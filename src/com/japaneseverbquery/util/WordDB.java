@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 /**
@@ -73,6 +74,9 @@ public class WordDB {
 				list.add(key);
 			}
 		}
+		if(this.needConcessionRecognize()&&list.size()==0&&prefix.length()>1){
+		    return getMatchedArray(prefix.substring(0, 1));
+		}
 		return list;
 	}
 
@@ -85,4 +89,23 @@ public class WordDB {
 	public Word getWord(String stringExtra) {
 		return mMap.get(stringExtra);
 	}
+private static final String CON_REC="CONREC";
+private static SharedPreferences sSPref;
+private SharedPreferences getSPref(){
+    if(sSPref==null){
+        synchronized (SharedPreferences.class) {
+            if(sSPref==null){
+                sSPref=mContext.getSharedPreferences(CON_REC, 0);
+            }
+        }
+    }
+    return sSPref;
+}
+    public boolean needConcessionRecognize() {
+        return getSPref().getBoolean(CON_REC,false);
+    }
+
+    public void setConcessionRecognize(boolean need) {
+        getSPref().edit().putBoolean(CON_REC, need).commit();
+    }
 }

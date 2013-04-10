@@ -14,6 +14,9 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,12 +25,22 @@ public class HomeActivity extends ListActivity implements OnItemClickListener {
 
 	private EditText mInputBox;
 	private PrefixWordAdapter mPrefixWordAdapter;
+    private CheckBox mUseConRecCheckBox;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		WordDB.getInstance(getApplicationContext());
+		mUseConRecCheckBox = (CheckBox)findViewById(R.id.conr);
+		mUseConRecCheckBox.setChecked(WordDB.getInstance(getApplicationContext()).needConcessionRecognize());
+		mUseConRecCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+                WordDB.getInstance(getApplicationContext()).setConcessionRecognize(arg1);
+                
+            }});
 		mInputBox = (EditText) findViewById(R.id.prefix);
 		setChangeListener(new EndListener());
 		mPrefixWordAdapter = new PrefixWordAdapter(this.getApplicationContext());
