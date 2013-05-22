@@ -1,7 +1,6 @@
 
 package com.japaneseverbquery;
 
-import java.util.Collections;
 import java.util.List;
 
 import com.japaneseverbquery.adapter.PrefixWordAdapter;
@@ -67,13 +66,8 @@ public class HomeActivity extends ListActivity implements OnItemClickListener {
         @Override
         public void afterTextChanged(Editable s) {
             String prefix = s.toString();
-            List<String> matchWord = null;
-            if (prefix.length() == 0) {
-                matchWord = Collections.emptyList();
-            } else {
-                // search for the line
-                matchWord = WordDB.getInstance(getApplicationContext()).getMatchedArray(prefix);
-            }
+            List<String> matchWord = WordDB.getInstance(getApplicationContext()).getMatchedArray(
+                    prefix);
             mPrefixWordAdapter.setTextList(matchWord);
             // show the dict type of the word.
             mPrefixWordAdapter.notifyDataSetChanged();
