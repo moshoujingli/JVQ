@@ -41,7 +41,7 @@ public class WordDB {
             String buffer = null;
             String type = null;
             while ((buffer = dbReader.readLine()) != null) {
-                if (buffer.length() <= 5) {
+                if (buffer.length() <= 2) {
                     continue;
                 }
                 if (!buffer.startsWith(",")) {
