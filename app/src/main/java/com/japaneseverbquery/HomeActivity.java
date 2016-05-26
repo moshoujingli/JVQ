@@ -3,6 +3,7 @@ package com.japaneseverbquery;
 
 import java.util.List;
 
+import com.appsflyer.AppsFlyerLib;
 import com.japaneseverbquery.adapter.PrefixWordAdapter;
 import com.japaneseverbquery.util.Constant;
 import com.japaneseverbquery.util.WordDB;
@@ -31,6 +32,7 @@ public class HomeActivity extends ListActivity implements OnItemClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startAppsflyer();
         NewRelic.withApplicationToken(
                 "AA0a44d061f077ae6e730ef6d06564652d9cf88ec9"
         ).start(this.getApplication());
@@ -45,6 +47,10 @@ public class HomeActivity extends ListActivity implements OnItemClickListener {
         this.getListView().setEmptyView(emptyView);
         HomeActivity.this.getListView().setAdapter(mPrefixWordAdapter);
         this.getListView().setOnItemClickListener(this);
+    }
+
+    private void startAppsflyer() {
+        AppsFlyerLib.getInstance().startTracking(this.getApplication(),"cE5Ac4a3oKGCfpF7okAKnJ");
     }
 
     public void setChangeListener(TextWatcher textWatcher) {
