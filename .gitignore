@@ -53,3 +53,7 @@ captures/
 
 .idea
 newrelic.properties
+
+gradlew
+gradlew.bat
+gradle/wrapper
