@@ -1,28 +1,24 @@
 
 package com.japaneseverbquery;
 
-import java.util.List;
-
-import com.appsflyer.AppsFlyerLib;
-import com.japaneseverbquery.adapter.PrefixWordAdapter;
-import com.japaneseverbquery.util.Constant;
-import com.japaneseverbquery.util.WordDB;
-import com.newrelic.agent.android.NewRelic;
-
-import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.text.Editable;
-import android.text.TextWatcher;
+
+import com.appsflyer.AppsFlyerLib;
+import com.japaneseverbquery.adapter.PrefixWordAdapter;
+import com.japaneseverbquery.util.Constant;
+import com.japaneseverbquery.util.WordDB;
+
+import java.util.List;
 
 public class HomeActivity extends ListActivity implements OnItemClickListener {
 
@@ -33,9 +29,6 @@ public class HomeActivity extends ListActivity implements OnItemClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         startAppsflyer();
-        NewRelic.withApplicationToken(
-                "AA0a44d061f077ae6e730ef6d06564652d9cf88ec9"
-        ).start(this.getApplication());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
         WordDB.getInstance(getApplicationContext());

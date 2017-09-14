@@ -4,8 +4,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
-        classpath "com.newrelic.agent.android:agent-gradle-plugin:5.+"
+        classpath 'com.android.tools.build:gradle:3.0.0-beta5'
     }
 }
 allprojects {

@@ -7,6 +7,5 @@ package com.japaneseverbquery.util;
  */
 public final class Constant {
     public final static String TAG = "jpvs";
-    public final static boolean DEBUG = true;
     public final static String BASE_TYPE = "base_type";
 }

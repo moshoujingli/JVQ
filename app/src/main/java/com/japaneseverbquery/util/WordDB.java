@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.japaneseverbquery.BuildConfig;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -134,7 +136,7 @@ public class WordDB {
     }
 
     static public void log(String logText) {
-        if (Constant.DEBUG) {
+        if (BuildConfig.DEBUG) {
             Log.i(Constant.TAG, logText);
         }
     }
