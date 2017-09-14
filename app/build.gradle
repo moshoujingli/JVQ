@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android'
+apply plugin: 'newrelic'
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+    defaultConfig {
+        applicationId "com.japaneseverbquery"
+        minSdkVersion 14
+        targetSdkVersion 15
+        testApplicationId "com.japaneseverbquery.test"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../proguard-rules.txt'
+        }
+    }
+    productFlavors {
+        GP {
+            versionCode 1
+            versionName '0.9.5'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.newrelic.agent.android:android-agent:5.+'
+    compile 'com.appsflyer:af-android-sdk:4.3.7@aar'
+    compile 'com.google.android.gms:play-services-ads:9.0.0'
+    compile 'com.google.android.gms:play-services-base:9.0.0'
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">日语动词词典</string>
+    <string name="check_lable">增强搜索</string>
+    <string name="detail_tmpl">类型:%1$s\n中文:%2$s\n基本形:%3$s\nます形:%4$s\nて形:%5$s\nない形:%6$s\nた　形:%7$s\n命令形:%8$s\n意志形:%9$s\nば形:%10$s\n可能形式:%11$s\n被动形式:%12$s\n使役形式:%13$s</string>
+    <string name="empty_hint">无匹配结果</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="input_hint">输入动词前缀</string>
+    <string name="menu_settings">设置</string>
+    <string name="title_activity_home">日语动词词典</string>
+</resources>
