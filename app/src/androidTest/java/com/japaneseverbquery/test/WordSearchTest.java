@@ -15,8 +15,6 @@ public class WordSearchTest extends InstrumentationTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         mWordDb = WordDB.getInstance(this.getInstrumentation().getTargetContext());
-        mWordDb.setConcessionRecognize(true);
-
     }
 
     public void testSearchSpeed() {
