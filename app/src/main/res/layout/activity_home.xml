@@ -2,25 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/header_bg_h"
-    android:background="@color/light_brown"
-    android:id="@+id/prefix_wrapper">
-    <EditText
-        android:id="@+id/prefix"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/input_text_size"
-        android:textColor="@color/white"
-        android:textColorHint="@color/light_white"
-        android:hint="@string/input_hint"
-        android:layout_marginStart="@dimen/comp_side_margin"
-        android:layout_marginEnd="@dimen/comp_side_margin"
-        android:layout_marginBottom="@dimen/input_bottom_margin"
-        android:layout_gravity="bottom"
-        android:singleLine="true"/>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/prefix_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_bg_h"
+        android:background="@color/light_brown">
+
+        <EditText
+            android:id="@+id/prefix"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/comp_side_margin"
+            android:layout_marginEnd="@dimen/comp_side_margin"
+            android:layout_marginBottom="@dimen/input_bottom_margin"
+            android:hint="@string/input_hint"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/light_white"
+            android:textSize="@dimen/input_text_size" />
+    </LinearLayout>
 
 
     <ListView
@@ -28,17 +30,34 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/prefix_wrapper"
-        android:listSelector="@drawable/list_item_bg"
-        android:layout_marginTop="@dimen/list_top_margin">
-    </ListView>
+        android:layout_marginTop="@dimen/list_top_margin"
+        android:listSelector="@drawable/list_item_bg" />
 
-    <TextView
-        android:id="@+id/privacy"
-        android:visibility="gone"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:text="@string/privacy"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:layout_alignParentBottom="true"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:onClick="openPrivacyPolicy"
+            android:text="@string/privacy_policy" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:onClick="openUserAgreement"
+            android:text="@string/user_agreement" />
+
+    </LinearLayout>
+
 
 </RelativeLayout>

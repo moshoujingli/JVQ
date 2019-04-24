@@ -8,4 +8,7 @@
     <string name="input_hint">输入动词前缀</string>
     <string name="menu_settings">设置</string>
     <string name="title_activity_home">日语动词词典</string>
+
+    <string name="privacy_policy">隐私说明</string>
+    <string name="user_agreement">用户协议</string>
 </resources>

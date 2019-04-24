@@ -18,6 +18,8 @@ import com.japaneseverbquery.adapter.PrefixWordAdapter
 import com.japaneseverbquery.util.AppPreference
 import com.japaneseverbquery.util.ReportHelper
 import com.japaneseverbquery.util.WordDB
+import android.content.Intent
+import android.net.Uri
 
 
 class HomeActivity : ListActivity(), OnItemClickListener {
@@ -38,16 +40,6 @@ class HomeActivity : ListActivity(), OnItemClickListener {
         this.listView.adapter = mPrefixWordAdapter
         this.listView.onItemClickListener = this
 
-        if (AppPreference.needShowPrivacy()) {
-            val privacy: TextView = findViewById(R.id.privacy)
-            privacy.visibility = View.VISIBLE
-            privacy.setOnClickListener {
-                Toast.makeText(this, "For calculate install info, we use and send GAID, plz not use if you matter this.", Toast.LENGTH_LONG).show()
-                it.visibility = View.GONE
-            }
-        }
-
-
     }
 
     fun setChangeListener(textWatcher: TextWatcher) {
@@ -57,6 +49,19 @@ class HomeActivity : ListActivity(), OnItemClickListener {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activity_home, menu)
         return true
+    }
+
+    fun openPrivacyPolicy(v: View) {
+        val uri = Uri.parse("https://jvq-privacy.oss-cn-hongkong.aliyuncs.com/UserAgreement.html")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
+
+    }
+
+    fun openUserAgreement(v: View) {
+        val uri = Uri.parse("https://jvq-privacy.oss-cn-hongkong.aliyuncs.com/PrivacyPolicy.html")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
     }
 
     private inner class EndListener : TextWatcher {

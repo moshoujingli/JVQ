@@ -16,13 +16,4 @@ object AppPreference {
             true
         }
     }
-
-    fun needShowPrivacy(): Boolean {
-        return if (sharedPreference.contains("ShownPrivacy")) {
-            false
-        } else {
-            sharedPreference.edit().putBoolean("ShownPrivacy", true).apply()
-            true
-        }
-    }
 }
