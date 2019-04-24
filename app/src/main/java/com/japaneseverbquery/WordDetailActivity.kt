@@ -15,9 +15,8 @@ import com.japaneseverbquery.util.WordDB
 class WordDetailActivity : Activity() {
 
 
-
     companion object STATIC {
-        val WORD_EXTRA = "WORD_EXTRA";
+        val WORD_EXTRA = "WORD_EXTRA"
         fun startWordDetailActivity(context: Context, word: String) {
             val intent = Intent(context, WordDetailActivity::class.java)
             intent.putExtra(WORD_EXTRA, word)

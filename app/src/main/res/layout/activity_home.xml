@@ -32,4 +32,13 @@
         android:layout_marginTop="@dimen/list_top_margin">
     </ListView>
 
+    <TextView
+        android:id="@+id/privacy"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/privacy"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>

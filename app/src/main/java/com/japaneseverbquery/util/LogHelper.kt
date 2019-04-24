@@ -9,18 +9,40 @@ import com.japaneseverbquery.BuildConfig
  */
 
 object LogHelper {
-    private var sTag: String? = null
+    private val ERROR_STATE = "error_state"
+    private var sTag: String = BuildConfig.APPLICATION_ID
     private val mLogEnabled = BuildConfig.DEBUG_LOG
     private val shouldThrowException = BuildConfig.DEBUG
+
+
+    fun errorState(msg: String, throwable: Throwable?) {
+        if (shouldThrowException) {
+            throw Exception(msg, throwable)
+        } else {
+            e(ERROR_STATE, msg)
+        }
+    }
 
     fun setTag(tag: String) {
         sTag = tag
     }
 
-    fun i(subTag: String, msg: String) {
+    fun e(subTag: String, msg: String) {
         if (mLogEnabled) {
-            Log.i(sTag, getLogMsg(subTag, msg))
+            Log.e(sTag, getLogMsg(subTag, msg))
         }
+    }
+
+    fun i(subTag: String, msg: String) {
+        if (subTag.startsWith("af_debug_tag")){
+            Log.i(sTag, getLogMsg(subTag, msg))
+        }else{
+            if (mLogEnabled) {
+                Log.i(sTag, getLogMsg(subTag, msg))
+            }
+        }
+
+
     }
 
     private fun getLogMsg(subTag: String, msg: String): String {

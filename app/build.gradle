@@ -1,14 +1,22 @@
+
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 android {
-    compileSdkVersion 21
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 26
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.japaneseverbquery"
         minSdkVersion 14
-        targetSdkVersion 15
+        targetSdkVersion 26
         testApplicationId "com.japaneseverbquery.test"
-        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path file('src/main/jni/Android.mk')
+        }
     }
     buildTypes {
 
@@ -30,19 +38,28 @@ android {
     productFlavors {
         GP {
             dimension "env"
-            versionCode 1
-            versionName '0.9.5'
+            versionCode 21
+            versionName '1.0.1'
         }
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.3'
-    compile 'com.appsflyer:af-android-sdk:4.6.0@aar'
-    compile 'com.google.android.gms:play-services-ads:9.0.0'
-    compile 'com.google.android.gms:play-services-base:9.0.0'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation 'com.appsflyer:af-android-sdk:4+@aar'
+    implementation 'com.android.installreferrer:installreferrer:1.0'
+
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.android.support:support-v4:24.2.1'
+    implementation 'com.google.android.gms:play-services-base:16.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    androidTestImplementation 'junit:junit:4.12'
 }
 repositories {
     mavenCentral()
 }
+
+apply plugin: 'com.google.gms.google-services'

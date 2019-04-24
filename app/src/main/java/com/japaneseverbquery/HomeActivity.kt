@@ -10,9 +10,15 @@ import android.view.Window
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
 import com.japaneseverbquery.adapter.PrefixWordAdapter
+import com.japaneseverbquery.util.AppPreference
+import com.japaneseverbquery.util.ReportHelper
 import com.japaneseverbquery.util.WordDB
+
 
 class HomeActivity : ListActivity(), OnItemClickListener {
 
@@ -21,10 +27,9 @@ class HomeActivity : ListActivity(), OnItemClickListener {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startAppsflyer()
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_home)
-        mInputBox = findViewById(R.id.prefix) as EditText
+        mInputBox = findViewById(R.id.prefix)
         mInputBox!!.setBackgroundResource(R.drawable.editor)
         setChangeListener(EndListener())
         mPrefixWordAdapter = PrefixWordAdapter(this.applicationContext)
@@ -33,10 +38,16 @@ class HomeActivity : ListActivity(), OnItemClickListener {
         this.listView.adapter = mPrefixWordAdapter
         this.listView.onItemClickListener = this
 
-    }
+        if (AppPreference.needShowPrivacy()) {
+            val privacy: TextView = findViewById(R.id.privacy)
+            privacy.visibility = View.VISIBLE
+            privacy.setOnClickListener {
+                Toast.makeText(this, "For calculate install info, we use and send GAID, plz not use if you matter this.", Toast.LENGTH_LONG).show()
+                it.visibility = View.GONE
+            }
+        }
 
-    private fun startAppsflyer() {
-        AppsFlyerLib.getInstance().startTracking(this.application, "cE5Ac4a3oKGCfpF7okAKnJ")
+
     }
 
     fun setChangeListener(textWatcher: TextWatcher) {
@@ -52,7 +63,14 @@ class HomeActivity : ListActivity(), OnItemClickListener {
         override fun afterTextChanged(s: Editable) {
             val prefix = s.toString()
 
+            if (AppPreference.isFirstInputContent()) {
+                ReportHelper.reportFirstInput(prefix)
+            }
+
             val matchWord = WordDB.getMatchedArray(prefix)
+            if (matchWord.isEmpty() && prefix.length > 3) {
+                ReportHelper.reportNoMatchInput(prefix)
+            }
             mPrefixWordAdapter!!.setTextList(matchWord)
             // show the dict type of the word.
             mPrefixWordAdapter!!.notifyDataSetChanged()
@@ -68,7 +86,9 @@ class HomeActivity : ListActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(arg0: AdapterView<*>, view: View, arg2: Int, arg3: Long) {
-        WordDetailActivity.startWordDetailActivity(this, view.tag as String)
+        val word = view.tag as String
+        ReportHelper.reportSelectWord(word)
+        WordDetailActivity.startWordDetailActivity(this, word)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 }

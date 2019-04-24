@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "171024813191",
+    "firebase_url": "https://test-uninstall.firebaseio.com",
+    "project_id": "test-uninstall",
+    "storage_bucket": "test-uninstall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171024813191:android:7ae66505b7cf4361",
+        "android_client_info": {
+          "package_name": "com.japaneseverbquery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "171024813191-gl7pv9v2edkvf42qcqt1fjqci4gtthkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC--ODY82MtM9ugdt51EfWcdXJLtd4C6Fo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

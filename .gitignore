@@ -57,3 +57,8 @@ newrelic.properties
 gradlew
 gradlew.bat
 gradle/wrapper
+
+.externalNativeBuild
+gradle.properties
+app/GP/release/output.json
+app/release/GP/release/app.aab
